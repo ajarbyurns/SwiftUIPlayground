@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum Status : String, Decodable {
-    case Alive, Dead, unknown
-}
-
-enum Gender : String, Decodable {
-    case Male, Female, Genderless, unknown
-}
-
 struct Character : Decodable, Hashable {
     static func == (lhs: Character, rhs: Character) -> Bool {
         return lhs.id == rhs.id
@@ -24,20 +16,20 @@ struct Character : Decodable, Hashable {
     let name : String
 }
 
-struct CharacterLocation : Decodable, Hashable {
-    let name : String
-    let url : String?
+struct Location : Decodable, Hashable {
+    static func == (lhs: Location, rhs: Location) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id: Int
+    let link: String
 }
 
-struct CharacterPageInfo : Decodable {
-    let count : Int
-    let pages : Int
-    let next : String?
-    let prev : String?
-}
-
-struct CharactersResponse : Decodable {
-    let error: String?
-    let info: CharacterPageInfo?
-    let results : [Character]?
+struct Music : Decodable, Hashable {
+    static func == (lhs: Music, rhs: Music) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id: Int
+    let link: String
 }
